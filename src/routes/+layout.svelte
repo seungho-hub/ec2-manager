@@ -5,10 +5,10 @@
 
 <main>
 	<TopBar />
-	<div class="content">
+	<section id="content">
 		<slot />
-	</div>
+	</section>
 </main>
 
-<style>
+<style lang="scss">
 </style>
