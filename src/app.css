@@ -1,0 +1,27 @@
+:root {
+  --sig: #FFCA36;
+  --bg: #161728;
+  --font-white: #DDDDDD;
+  --font-black: #161728;
+  --font-light-gray: #686868;
+  --font-dark-gray: #565657;
+  --font-red: #eb5a40;
+
+  --bg-bar: #23263D;
+  --bg-button: #23263D;
+  --bg-input: #000000;
+  --border-input: #30363d;
+  --border: #21262D;
+}
+
+body{
+  width : 100vw;
+  height : 100vh;
+  background-color: var(--bg)
+}
+* {
+  box-sizing: border-box;
+  color : var(--font-white);
+  padding : 0;
+  margin : 0;
+}
