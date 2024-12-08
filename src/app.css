@@ -1,5 +1,5 @@
 :root {
-  --sig: #FFCA36;
+  --sig:#F7A80D;
   --bg: #161728;
   --font-white: #DDDDDD;
   --font-black: #161728;
@@ -31,6 +31,7 @@ button {
   padding : 5px 10px;
   border-radius: 10px;
   background: none;
+  font-weight: 600;
 }
 
 button:hover{
