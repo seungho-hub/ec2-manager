@@ -6,7 +6,6 @@
 
 <section id="home">
 	<InstanceList />
-	<AZList />
 	<ARList />
 </section>
 

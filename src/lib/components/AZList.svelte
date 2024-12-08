@@ -1,25 +1,10 @@
 <script lang="ts">
-	import type { AvailabilityZone } from '@aws-sdk/client-ec2';
-	import { onMount } from 'svelte';
-
-	let azs: AvailabilityZone[] = [];
-
-	onMount(() => {
-		loadAZ();
-	});
-
-	function loadAZ() {
-		fetch('/api/zones/available')
-			.then((res) => res.json())
-			.then((data) => {
-				azs = data;
-			});
-	}
+	let { azs } = $props();
 </script>
 
 <section id="AZ-list">
 	<div class="header">
-		<h3>availability zones</h3>
+		<h4>zones</h4>
 	</div>
 	<div class="AZ-list">
 		{#each azs as az}
@@ -42,20 +27,20 @@
 
 <style lang="scss">
 	#AZ-list {
-		flex: 0 0 1fr;
-		height: 100vh;
-		overflow: scroll;
-		overflow-x: hidden;
+		.header {
+			padding-left: 20px;
+		}
 		.AZ-list {
 			display: flex;
 			flex-direction: column;
 			gap: 20px;
-			margin-top: 20px;
+			margin-top: 10px;
+			margin-left: 20px;
 			.zone {
 				display: flex;
 				flex-direction: row;
 				gap: 10px;
-				padding: 10px;
+				padding: 5px;
 				background-color: var(--bg-bar);
 				.available-dot {
 					.dot {
