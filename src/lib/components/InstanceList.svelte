@@ -135,76 +135,79 @@
 </section>
 
 <style lang="scss">
-	.instance-list {
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		gap: 10px;
-		.instance {
-			border-radius: 10px;
-			width: auto;
-			padding: 10px 20px 10px 10px;
-			background-color: var(--bg-bar);
+	#instance-list {
+		flex: 0 0 80%;
+		.instance-list {
 			display: flex;
-			flex-direction: row;
-			gap: 20px;
-			.img-wrapper {
-				width: 40px;
-				display: flex;
-				align-items: center;
-				img {
-					width: 100%;
-				}
-			}
-			.label {
-				min-width: 130px;
-				.name {
-					font-size: 15px;
-					font-weight: bold;
-				}
-				.id {
-					font-size: 12px;
-					color: var(--font-light-gray);
-				}
-				.state {
-					margin-top: 2px;
-					font-size: 13px;
-				}
-			}
-			th {
-				text-align: start;
-				padding-right: 5px;
-			}
-			td {
-				color: #acacac;
-			}
-			.detail {
-				flex-direction: column;
-				font-size: 13px;
-				font-weight: 600;
-				display: flex;
-				gap: 2px;
-			}
-			.ip-address {
-				min-width: 160px;
-				display: flex;
-				flex-direction: column;
-				font-size: 13px;
-				font-weight: 600;
-				gap: 2px;
-			}
-			.control {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 10px;
+			.instance {
+				border-radius: 10px;
+				width: auto;
+				padding: 10px 20px 10px 10px;
+				background-color: var(--bg-bar);
 				display: flex;
 				flex-direction: row;
-				button {
-					width: 60px;
-					border-radius: 0;
-					&.disabled {
-						&:hover {
-							cursor: not-allowed;
-						}
-						span {
-							color: #747373;
+				gap: 20px;
+				.img-wrapper {
+					width: 40px;
+					display: flex;
+					align-items: center;
+					img {
+						width: 100%;
+					}
+				}
+				.label {
+					min-width: 130px;
+					.name {
+						font-size: 15px;
+						font-weight: bold;
+					}
+					.id {
+						font-size: 12px;
+						color: var(--font-light-gray);
+					}
+					.state {
+						margin-top: 2px;
+						font-size: 13px;
+					}
+				}
+				th {
+					text-align: start;
+					padding-right: 5px;
+				}
+				td {
+					color: #acacac;
+				}
+				.detail {
+					flex-direction: column;
+					font-size: 13px;
+					font-weight: 600;
+					display: flex;
+					gap: 2px;
+				}
+				.ip-address {
+					min-width: 160px;
+					display: flex;
+					flex-direction: column;
+					font-size: 13px;
+					font-weight: 600;
+					gap: 2px;
+				}
+				.control {
+					display: flex;
+					flex-direction: row;
+					button {
+						width: 60px;
+						border-radius: 0;
+						&.disabled {
+							&:hover {
+								cursor: not-allowed;
+							}
+							span {
+								color: #747373;
+							}
 						}
 					}
 				}
