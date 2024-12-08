@@ -5,7 +5,8 @@ import {
 	StartInstancesCommand,
 	StopInstancesCommand,
 	RebootInstancesCommand,
-	DescribeAvailabilityZonesCommand
+	DescribeAvailabilityZonesCommand,
+	DescribeRegionsCommand
 } from '@aws-sdk/client-ec2';
 import { ec2ClientConfig } from '../../conf/ec2Client.config';
 
@@ -63,6 +64,14 @@ class EC2Operation {
 
 	async getAZs() {
 		const command = new DescribeAvailabilityZonesCommand({});
+
+		const res = await this.client.send(command);
+
+		return res;
+	}
+
+	async getARs() {
+		const command = new DescribeRegionsCommand({});
 
 		const res = await this.client.send(command);
 
