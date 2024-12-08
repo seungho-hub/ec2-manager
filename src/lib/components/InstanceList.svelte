@@ -138,6 +138,9 @@
 <style lang="scss">
 	#instance-list {
 		flex: 0 0 800px;
+		height: 100vh;
+		overflow-y: scroll;
+		overflow-x: hidden;
 		.instance-list {
 			display: flex;
 			flex-direction: column;

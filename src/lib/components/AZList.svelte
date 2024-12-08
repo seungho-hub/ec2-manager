@@ -43,6 +43,9 @@
 <style lang="scss">
 	#AZ-list {
 		flex: 0 0 1fr;
+		height: 100vh;
+		overflow: scroll;
+		overflow-x: hidden;
 		.AZ-list {
 			display: flex;
 			flex-direction: column;

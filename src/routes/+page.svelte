@@ -1,26 +1,22 @@
 <script>
 	import InstanceList from '$lib/components/InstanceList.svelte';
-	import Menu from '$lib/components/Menu.svelte';
 	import AZList from '$lib/components/AZList.svelte';
+	import ARList from '$lib/components/ARList.svelte';
 </script>
 
 <section id="home">
 	<InstanceList />
-	<section class="division"></section>
 	<AZList />
+	<ARList />
 </section>
 
 <style lang="scss">
 	#home {
-		margin: 20px 100px;
+		padding: 20px 40px;
+		overflow: hidden;
 		display: flex;
 		justify-content: center;
-		gap: 10px;
-		height: 80%;
-
-		.division {
-			width: 1px;
-			border-left: 1px solid var(--font-dark-gray);
-		}
+		gap: 40px;
+		height: 100vh;
 	}
 </style>

@@ -4,7 +4,6 @@
 </script>
 
 <main>
-	<TopBar />
 	<section id="content">
 		<slot />
 	</section>
