@@ -1,5 +1,5 @@
 import type { Instance } from '@aws-sdk/client-ec2';
-import { EC2Client, DescribeInstancesCommand } from '@aws-sdk/client-ec2';
+import { EC2Client, DescribeInstancesCommand, StartInstancesCommand } from '@aws-sdk/client-ec2';
 import { ec2ClientConfig } from '../../conf/ec2Client.config';
 
 class EC2Operation {
@@ -22,6 +22,16 @@ class EC2Operation {
 		});
 
 		return instances;
+	}
+
+	async startInstance(id: string) {
+		const command = new StartInstancesCommand({
+			InstanceIds: [id]
+		});
+
+		const res = await this.client.send(command);
+
+		return res;
 	}
 }
 
