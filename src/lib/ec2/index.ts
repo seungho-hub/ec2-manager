@@ -3,7 +3,8 @@ import {
 	EC2Client,
 	DescribeInstancesCommand,
 	StartInstancesCommand,
-	StopInstancesCommand
+	StopInstancesCommand,
+	RebootInstancesCommand
 } from '@aws-sdk/client-ec2';
 import { ec2ClientConfig } from '../../conf/ec2Client.config';
 
@@ -41,6 +42,16 @@ class EC2Operation {
 
 	async stopInstance(id: string) {
 		const command = new StopInstancesCommand({
+			InstanceIds: [id]
+		});
+
+		const res = await this.client.send(command);
+
+		return res;
+	}
+
+	async rebootInstance(id: string) {
+		const command = new RebootInstancesCommand({
 			InstanceIds: [id]
 		});
 
