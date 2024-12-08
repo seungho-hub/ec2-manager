@@ -18,11 +18,15 @@
 	.lds-ripple {
 		display: inline-block;
 		position: relative;
-		width: 80px;
-		height: 80px;
+		width: 50px;
+		height: 50px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 	.lds-ripple div {
 		position: absolute;
+
 		border: 4px solid currentColor;
 		opacity: 1;
 		border-radius: 50%;
