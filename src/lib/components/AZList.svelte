@@ -2,18 +2,17 @@
 	import type { AvailabilityZone } from '@aws-sdk/client-ec2';
 	import { onMount } from 'svelte';
 
-	let regions: AvailabilityZone[] = [];
+	let azs: AvailabilityZone[] = [];
 
 	onMount(() => {
 		loadAZ();
 	});
 
 	function loadAZ() {
-		fetch('/api/regions/available')
+		fetch('/api/zones/available')
 			.then((res) => res.json())
 			.then((data) => {
-				console.log(data);
-				regions = data;
+				azs = data;
 			});
 	}
 </script>
@@ -23,17 +22,17 @@
 		<h3>availability zones</h3>
 	</div>
 	<div class="AZ-list">
-		{#each regions as region}
+		{#each azs as az}
 			<div class="zone">
 				<div class="available-dot">
 					<div class="dot"></div>
 				</div>
 				<div class="label">
 					<span class="name">
-						{region.ZoneName}
+						{az.ZoneName}
 					</span>
 					<span class="id">
-						( {region.ZoneId} )
+						( {az.ZoneId} )
 					</span>
 				</div>
 			</div>

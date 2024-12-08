@@ -66,9 +66,7 @@ class EC2Operation {
 
 		const res = await this.client.send(command);
 
-		const { AvailabilityZones } = res;
-
-		return AvailabilityZones;
+		return res;
 	}
 }
 
