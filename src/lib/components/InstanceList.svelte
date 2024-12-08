@@ -38,96 +38,101 @@
 	}
 </script>
 
-<Menu {reloadInstances} />
-<div class="instance-list">
-	{#each instances as instance}
-		<div class="instance" in:slide>
-			<div class="img-wrapper">
-				<img src="/instance.png" alt="" />
-			</div>
-			<div class="label">
-				<p class="name">
-					{instance.KeyName}
-				</p>
-				<p class="id">
-					{instance.InstanceId}
-				</p>
-				<p class="state" style="color : {stateColorMap[instance.State?.Name as InstanceStateName]}">
-					( {instance.State?.Name} )
-				</p>
-			</div>
+<section id="instance-list">
+	<Menu {reloadInstances} />
+	<div class="instance-list">
+		{#each instances as instance}
+			<div class="instance" in:slide>
+				<div class="img-wrapper">
+					<img src="/instance.png" alt="" />
+				</div>
+				<div class="label">
+					<p class="name">
+						{instance.KeyName}
+					</p>
+					<p class="id">
+						{instance.InstanceId}
+					</p>
+					<p
+						class="state"
+						style="color : {stateColorMap[instance.State?.Name as InstanceStateName]}"
+					>
+						( {instance.State?.Name} )
+					</p>
+				</div>
 
-			<div class="detail">
-				<table>
-					<tbody>
-						<tr class="class=availability-zone">
-							<th>region</th>
-							<td>{instance.Placement?.AvailabilityZone}</td>
-						</tr>
-						<tr class="type">
-							<th>type</th>
-							<td>{instance.InstanceType}</td>
-						</tr>
-						<tr class="platform">
-							<th>platform</th>
-							<td>{instance.PlatformDetails}</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+				<div class="detail">
+					<table>
+						<tbody>
+							<tr class="class=availability-zone">
+								<th>region</th>
+								<td>{instance.Placement?.AvailabilityZone}</td>
+							</tr>
+							<tr class="type">
+								<th>type</th>
+								<td>{instance.InstanceType}</td>
+							</tr>
+							<tr class="platform">
+								<th>platform</th>
+								<td>{instance.PlatformDetails}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 
-			<div class="ip-address">
-				<table>
-					<tbody>
-						<tr class="class=availability-zone">
-							<th>public ip</th>
-							<td>{instance.PublicIpAddress || '-'}</td>
-						</tr>
-						<tr class="type">
-							<th>private ip</th>
-							<td>{instance.PrivateIpAddress || '-'}</td>
-						</tr>
-					</tbody>
-				</table>
+				<div class="ip-address">
+					<table>
+						<tbody>
+							<tr class="class=availability-zone">
+								<th>public ip</th>
+								<td>{instance.PublicIpAddress || '-'}</td>
+							</tr>
+							<tr class="type">
+								<th>private ip</th>
+								<td>{instance.PrivateIpAddress || '-'}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="control">
+					{#if instance.State?.Name == 'running'}
+						<button class="start disabled"
+							><span class="material-symbols-outlined" style="color : gray">
+								play_arrow
+							</span></button
+						>
+						<button
+							class="stop"
+							on:click={() => instanceControl(instance.InstanceId as string, 'stop')}
+							><span class="material-symbols-outlined"> pause </span></button
+						>
+						<button
+							class="reboot"
+							on:click={() => instanceControl(instance.InstanceId as string, 'reboot')}
+							><span class="material-symbols-outlined"> restart_alt </span></button
+						>
+					{:else if instance.State?.Name == 'stopped'}
+						<button
+							class="start"
+							on:click={() => instanceControl(instance.InstanceId as string, 'start')}
+							><span class="material-symbols-outlined"> play_arrow </span></button
+						>
+						<button class="stop disabled"
+							><span class="material-symbols-outlined" style="color : gray"> pause </span></button
+						>
+						<button class="reboot disabled"
+							><span class="material-symbols-outlined" style="color : gray">
+								restart_alt
+							</span></button
+						>
+					{:else if instance.State?.Name == 'pending' || instance.State?.Name == 'stopping' || instance.State?.Name == 'shutting-down'}
+						<Loader></Loader>
+					{/if}
+				</div>
 			</div>
-			<div class="control">
-				{#if instance.State?.Name == 'running'}
-					<button class="start disabled"
-						><span class="material-symbols-outlined" style="color : gray">
-							play_arrow
-						</span></button
-					>
-					<button
-						class="stop"
-						on:click={() => instanceControl(instance.InstanceId as string, 'stop')}
-						><span class="material-symbols-outlined"> pause </span></button
-					>
-					<button
-						class="reboot"
-						on:click={() => instanceControl(instance.InstanceId as string, 'reboot')}
-						><span class="material-symbols-outlined"> restart_alt </span></button
-					>
-				{:else if instance.State?.Name == 'stopped'}
-					<button
-						class="start"
-						on:click={() => instanceControl(instance.InstanceId as string, 'start')}
-						><span class="material-symbols-outlined"> play_arrow </span></button
-					>
-					<button class="stop disabled"
-						><span class="material-symbols-outlined" style="color : gray"> pause </span></button
-					>
-					<button class="reboot disabled"
-						><span class="material-symbols-outlined" style="color : gray">
-							restart_alt
-						</span></button
-					>
-				{:else if instance.State?.Name == 'pending' || instance.State?.Name == 'stopping' || instance.State?.Name == 'shutting-down'}
-					<Loader></Loader>
-				{/if}
-			</div>
-		</div>
-	{/each}
-</div>
+		{/each}
+	</div>
+</section>
 
 <style lang="scss">
 	.instance-list {
