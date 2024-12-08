@@ -14,6 +14,7 @@
 
 	function reloadInstances() {
 		instances = [];
+
 		fetch('/api/instances')
 			.then((res) => res.json())
 			.then((data) => {
@@ -29,7 +30,11 @@
 			})
 		})
 			.then((res) => res.json())
-			.then((data) => console.log(data));
+			.then((data) => {
+				setTimeout(() => {
+					reloadInstances();
+				}, 1000);
+			});
 	}
 </script>
 
