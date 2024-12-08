@@ -17,6 +17,7 @@
 	#menu {
 		display: flex;
 		flex-direction: row;
+		justify-content: end;
 		gap: 10px;
 		.item {
 			.create-instance {

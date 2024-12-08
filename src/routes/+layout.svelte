@@ -11,4 +11,10 @@
 </main>
 
 <style lang="scss">
+	main {
+		height: 100vh;
+		#content {
+			height: 100%;
+		}
+	}
 </style>

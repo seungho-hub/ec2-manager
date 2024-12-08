@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { slide } from 'svelte/transition';
+	import { fade, slide } from 'svelte/transition';
 	import type { Instance, InstanceStateName, State } from '@aws-sdk/client-ec2';
 	import stateColorMap from '../../conf/stateColorMap.config';
 	import Menu from './Menu.svelte';
@@ -39,10 +39,13 @@
 </script>
 
 <section id="instance-list">
+	<div class="header">
+		<h3>instances</h3>
+	</div>
 	<Menu {reloadInstances} />
 	<div class="instance-list">
 		{#each instances as instance}
-			<div class="instance" in:slide>
+			<div class="instance" in:slide out:fade>
 				<div class="img-wrapper">
 					<img src="/instance.png" alt="" />
 				</div>
@@ -118,12 +121,10 @@
 							><span class="material-symbols-outlined"> play_arrow </span></button
 						>
 						<button class="stop disabled"
-							><span class="material-symbols-outlined" style="color : gray"> pause </span></button
+							><span class="material-symbols-outlined"> pause </span></button
 						>
 						<button class="reboot disabled"
-							><span class="material-symbols-outlined" style="color : gray">
-								restart_alt
-							</span></button
+							><span class="material-symbols-outlined"> restart_alt </span></button
 						>
 					{:else if instance.State?.Name == 'pending' || instance.State?.Name == 'stopping' || instance.State?.Name == 'shutting-down'}
 						<Loader></Loader>
@@ -136,15 +137,16 @@
 
 <style lang="scss">
 	#instance-list {
-		flex: 0 0 80%;
+		flex: 0 0 800px;
 		.instance-list {
 			display: flex;
 			flex-direction: column;
 			align-items: flex-start;
 			gap: 10px;
+			margin-top: 20px;
 			.instance {
 				border-radius: 10px;
-				width: auto;
+				width: 800px;
 				padding: 10px 20px 10px 10px;
 				background-color: var(--bg-bar);
 				display: flex;
@@ -198,6 +200,9 @@
 				.control {
 					display: flex;
 					flex-direction: row;
+					align-items: center;
+					justify-content: center;
+					width: 180px;
 					button {
 						width: 60px;
 						border-radius: 0;
@@ -206,7 +211,7 @@
 								cursor: not-allowed;
 							}
 							span {
-								color: #747373;
+								color: #525252;
 							}
 						}
 					}

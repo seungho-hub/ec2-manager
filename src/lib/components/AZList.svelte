@@ -19,6 +19,9 @@
 </script>
 
 <section id="AZ-list">
+	<div class="header">
+		<h3>availability zones</h3>
+	</div>
 	<div class="AZ-list">
 		{#each regions as region}
 			<div class="zone">
@@ -45,6 +48,7 @@
 			display: flex;
 			flex-direction: column;
 			gap: 20px;
+			margin-top: 20px;
 			.zone {
 				display: flex;
 				flex-direction: row;
