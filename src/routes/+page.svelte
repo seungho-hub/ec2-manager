@@ -1,9 +1,10 @@
 <script>
+	import InstanceList from '$lib/components/InstanceList.svelte';
 	import Menu from '$lib/components/Menu.svelte';
 </script>
 
 <section id="main">
-	<Menu />
+	<InstanceList />
 </section>
 
 <style lang="scss">
