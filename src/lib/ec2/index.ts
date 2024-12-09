@@ -10,7 +10,8 @@ import {
 	DescribeImagesCommand,
 	DescribeSecurityGroupsCommand,
 	RunInstancesCommand,
-	DescribeKeyPairsCommand
+	DescribeKeyPairsCommand,
+	TerminateInstancesCommand
 } from '@aws-sdk/client-ec2';
 import { ec2ClientConfig } from '../../conf/ec2Client.config';
 
@@ -62,6 +63,16 @@ class EC2Operation {
 		});
 
 		const res = await this.client.send(command);
+
+		return res;
+	}
+
+	async terminateInstance(instanceId: string) {
+		const commnand = new TerminateInstancesCommand({
+			InstanceIds: [instanceId]
+		});
+
+		const res = await this.client.send(commnand);
 
 		return res;
 	}

@@ -22,7 +22,7 @@
 			});
 	}
 
-	function instanceControl(id: string, operation: 'start' | 'stop' | 'reboot') {
+	function instanceControl(id: string, operation: 'start' | 'stop' | 'reboot' | 'terminate') {
 		fetch(`/api/instances/${id}`, {
 			method: 'PUT',
 			body: JSON.stringify({
@@ -114,6 +114,12 @@
 							on:click={() => instanceControl(instance.InstanceId as string, 'reboot')}
 							><span class="material-symbols-outlined"> restart_alt </span></button
 						>
+						<button
+							class="terminate"
+							on:click={() => instanceControl(instance.InstanceId as string, 'terminate')}
+						>
+							<span class="material-symbols-outlined"> power_settings_new </span></button
+						>
 					{:else if instance.State?.Name == 'stopped'}
 						<button
 							class="start"
@@ -125,6 +131,12 @@
 						>
 						<button class="reboot disabled"
 							><span class="material-symbols-outlined"> restart_alt </span></button
+						>
+						<button
+							class="terminate"
+							on:click={() => instanceControl(instance.InstanceId as string, 'terminate')}
+						>
+							<span class="material-symbols-outlined"> power_settings_new </span></button
 						>
 					{:else if instance.State?.Name == 'pending' || instance.State?.Name == 'stopping' || instance.State?.Name == 'shutting-down'}
 						<Loader></Loader>

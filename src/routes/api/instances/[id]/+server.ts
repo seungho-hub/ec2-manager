@@ -6,18 +6,18 @@ export const PUT: RequestHandler = async ({ request, params }) => {
 	const { operation } = await request.json();
 	const { id } = params;
 
-	let operatedInstance;
-
 	switch (operation) {
 		case 'start':
-			operatedInstance = await ec2operation.startInstance(id as string);
+			await ec2operation.startInstance(id as string);
 			break;
 		case 'stop':
-			operatedInstance = await ec2operation.stopInstance(id as string);
+			await ec2operation.stopInstance(id as string);
 			break;
 		case 'reboot':
-			operatedInstance = await ec2operation.rebootInstance(id as string);
+			await ec2operation.rebootInstance(id as string);
 			break;
+		case 'terminate':
+			await ec2operation.terminateInstance(id as string);
 	}
 
 	return json({});
