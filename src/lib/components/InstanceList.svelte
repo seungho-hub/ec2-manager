@@ -140,6 +140,8 @@
 						>
 					{:else if instance.State?.Name == 'pending' || instance.State?.Name == 'stopping' || instance.State?.Name == 'shutting-down'}
 						<Loader></Loader>
+					{:else if instance.State?.Name == 'terminated'}
+						<div class="terminated">terminated</div>
 					{/if}
 				</div>
 			</div>
@@ -230,6 +232,9 @@
 							}
 						}
 					}
+				}
+				.terminated {
+					color: rgb(150, 62, 62);
 				}
 			}
 		}
