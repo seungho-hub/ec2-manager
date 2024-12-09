@@ -6,7 +6,8 @@ import {
 	StopInstancesCommand,
 	RebootInstancesCommand,
 	DescribeAvailabilityZonesCommand,
-	DescribeRegionsCommand
+	DescribeRegionsCommand,
+	DescribeImagesCommand
 } from '@aws-sdk/client-ec2';
 import { ec2ClientConfig } from '../../conf/ec2Client.config';
 
@@ -72,6 +73,16 @@ class EC2Operation {
 
 	async getARs() {
 		const command = new DescribeRegionsCommand({});
+
+		const res = await this.client.send(command);
+
+		return res;
+	}
+
+	async getImages() {
+		const command = new DescribeImagesCommand({
+			Owners: ['self']
+		});
 
 		const res = await this.client.send(command);
 
