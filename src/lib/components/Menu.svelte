@@ -2,7 +2,7 @@
 	let { reloadInstances } = $props();
 	import InstanceCreationModal from './InstanceCreationModal.svelte';
 
-	let showModal = $state(true);
+	let showModal = $state(false);
 
 	const closeModal = () => (showModal = false);
 </script>
