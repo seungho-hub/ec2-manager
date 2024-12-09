@@ -16,9 +16,14 @@ export const PUT: RequestHandler = async ({ request, params }) => {
 		case 'reboot':
 			await ec2operation.rebootInstance(id as string);
 			break;
-		case 'terminate':
-			await ec2operation.terminateInstance(id as string);
 	}
+
+	return json({});
+};
+
+export const DELETE: RequestHandler = async ({ request, params }) => {
+	const { id } = params;
+	const res = await ec2operation.terminateInstance(id as string);
 
 	return json({});
 };

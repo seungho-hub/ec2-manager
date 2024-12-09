@@ -14,12 +14,14 @@ import {
 	TerminateInstancesCommand
 } from '@aws-sdk/client-ec2';
 import { ec2ClientConfig } from '../../conf/ec2Client.config';
+import { NodeSSH, type Config } from 'node-ssh';
 
 class EC2Operation {
 	private client: EC2Client;
-
+	private ssh: NodeSSH;
 	constructor() {
 		this.client = new EC2Client(ec2ClientConfig);
+		this.ssh = new NodeSSH();
 	}
 
 	async getinstances() {
@@ -31,6 +33,7 @@ class EC2Operation {
 		res.Reservations?.forEach((reservation) => {
 			reservation.Instances?.forEach((instance) => {
 				instances.push(instance);
+				instance.State?.Name == '';
 			});
 		});
 
@@ -63,7 +66,7 @@ class EC2Operation {
 		});
 
 		const res = await this.client.send(command);
-
+		console.log(res);
 		return res;
 	}
 
@@ -135,6 +138,13 @@ class EC2Operation {
 		const res = await this.client.send(command);
 
 		return res;
+	}
+
+	async exec(config: Config, command: string) {
+		const conn = await this.ssh.connect(config);
+		const result = await conn.exec(command, []);
+
+		return result;
 	}
 }
 

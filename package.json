@@ -30,6 +30,7 @@
 		"vite": "^6.0.0"
 	},
 	"dependencies": {
-		"@aws-sdk/client-ec2": "^3.703.0"
+		"@aws-sdk/client-ec2": "^3.703.0",
+		"node-ssh": "^13.2.0"
 	}
 }
