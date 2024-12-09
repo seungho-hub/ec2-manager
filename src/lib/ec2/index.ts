@@ -8,7 +8,8 @@ import {
 	DescribeAvailabilityZonesCommand,
 	DescribeRegionsCommand,
 	DescribeImagesCommand,
-	DescribeSecurityGroupsCommand
+	DescribeSecurityGroupsCommand,
+	DescribeKeyPairsCommand
 } from '@aws-sdk/client-ec2';
 import { ec2ClientConfig } from '../../conf/ec2Client.config';
 
@@ -92,6 +93,14 @@ class EC2Operation {
 
 	async getSGS() {
 		const command = new DescribeSecurityGroupsCommand({});
+
+		const res = await this.client.send(command);
+
+		return res;
+	}
+
+	async getKeyPairs() {
+		const command = new DescribeKeyPairsCommand({});
 
 		const res = await this.client.send(command);
 
