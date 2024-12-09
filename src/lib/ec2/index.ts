@@ -7,7 +7,8 @@ import {
 	RebootInstancesCommand,
 	DescribeAvailabilityZonesCommand,
 	DescribeRegionsCommand,
-	DescribeImagesCommand
+	DescribeImagesCommand,
+	DescribeSecurityGroupsCommand
 } from '@aws-sdk/client-ec2';
 import { ec2ClientConfig } from '../../conf/ec2Client.config';
 
@@ -83,6 +84,14 @@ class EC2Operation {
 		const command = new DescribeImagesCommand({
 			Owners: ['self']
 		});
+
+		const res = await this.client.send(command);
+
+		return res;
+	}
+
+	async getSGS() {
+		const command = new DescribeSecurityGroupsCommand({});
 
 		const res = await this.client.send(command);
 
