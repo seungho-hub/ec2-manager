@@ -125,6 +125,7 @@
 			position: absolute;
 			top: 50%;
 			left: 50%;
+			width: 400px;
 			padding: 10px 20px;
 			border-radius: 10px;
 			transform: translate(-50%, -50%);
@@ -139,6 +140,7 @@
 
 				.count {
 					input {
+						width: 60px;
 						margin-top: 10px;
 					}
 				}
