@@ -1,15 +1,31 @@
-<script>
+<script lang="ts">
 	let { reloadInstances } = $props();
+	import InstanceCreationModal from './InstanceCreationModal.svelte';
+
+	let showModal = $state(true);
+
+	const closeModal = () => (showModal = false);
 </script>
+
+{#if showModal == true}
+	<InstanceCreationModal {closeModal} {reloadInstances} />
+{:else}{/if}
 
 <section id="menu">
 	<div class="item">
-		<button class="reload" on:click={() => reloadInstances()}>
+		<button class="reload" onclick={() => reloadInstances()}>
 			<span class="material-symbols-outlined"> refresh </span>
 		</button>
 	</div>
 	<div class="item">
-		<button class="create-instance"> create instance </button>
+		<button
+			class="create-instance"
+			onclick={() => {
+				showModal = true;
+			}}
+		>
+			create instance
+		</button>
 	</div>
 </section>
 

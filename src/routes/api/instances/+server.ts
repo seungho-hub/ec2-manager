@@ -7,3 +7,18 @@ export const GET: RequestHandler = async () => {
 
 	return json(instances);
 };
+
+export const POST: RequestHandler = async ({ request }) => {
+	const { imageId, keyPairId, maxCount, sgId } = await request.json();
+
+	const res = await ec2operation.createInstance({
+		ImageId: imageId,
+		KeyName: keyPairId,
+		MaxCount: maxCount,
+		SecurityGroupIds: [sgId]
+	});
+
+	const instance = res.Instances?.[0];
+
+	return json(instance);
+};

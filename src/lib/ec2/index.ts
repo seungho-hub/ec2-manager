@@ -1,4 +1,4 @@
-import type { Instance } from '@aws-sdk/client-ec2';
+import type { Instance, RunInstancesCommandInput } from '@aws-sdk/client-ec2';
 import {
 	EC2Client,
 	DescribeInstancesCommand,
@@ -9,6 +9,7 @@ import {
 	DescribeRegionsCommand,
 	DescribeImagesCommand,
 	DescribeSecurityGroupsCommand,
+	RunInstancesCommand,
 	DescribeKeyPairsCommand
 } from '@aws-sdk/client-ec2';
 import { ec2ClientConfig } from '../../conf/ec2Client.config';
@@ -101,6 +102,24 @@ class EC2Operation {
 
 	async getKeyPairs() {
 		const command = new DescribeKeyPairsCommand({});
+
+		const res = await this.client.send(command);
+
+		return res;
+	}
+	async createInstance(
+		data: Pick<RunInstancesCommandInput, 'ImageId' | 'KeyName' | 'MaxCount' | 'SecurityGroupIds'>
+	) {
+		const instanceConfig: RunInstancesCommandInput = {
+			MaxCount: data.MaxCount,
+			MinCount: 1,
+			ImageId: data.ImageId,
+			InstanceType: 't2.micro',
+			KeyName: data.KeyName,
+			SecurityGroupIds: data.SecurityGroupIds
+		};
+
+		const command = new RunInstancesCommand(instanceConfig);
 
 		const res = await this.client.send(command);
 
