@@ -37,3 +37,85 @@ button {
 button:hover{
   cursor: pointer;
 }
+
+input,
+textarea,
+select {
+  padding: 4px 6px;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--bg-input);
+  color: var(--font-white);
+}
+
+input,
+select,
+textarea:focus {
+  outline: none;
+}
+
+input,
+select,
+textarea:hover {
+  cursor: pointer;
+}
+
+/*
+  select box
+*/
+.select-box {
+  position: relative;
+  width: 70%;
+}
+
+.select-box:hover {
+  cursor: pointer;
+}
+
+.select-box::before,
+::after {
+  --size: 0.3rem;
+  position: absolute;
+  content: '';
+  right: 1rem;
+  pointer-events: none;
+}
+
+.select-box::after {
+  border-left: var(--size) solid transparent;
+  border-right: var(--size) solid transparent;
+  border-top: var(--size) solid var(--font-white);
+  top: 55%;
+}
+
+.select-box::before {
+  border-left: var(--size) solid transparent;
+  border-right: var(--size) solid transparent;
+  border-bottom: var(--size) solid var(--font-white);
+  top: 40%;
+}
+
+select {
+  appearance: none;
+  width: 100%;
+  font-size: 13px;
+  padding: 10px 10px;
+  background-color: var(--bg);
+  border: 1px solid var(--font-light-gray);
+  color: var(--font-white);
+}
+
+
+/**
+  scroller
+*/
+
+::-webkit-scrollbar {
+  background-color: transparent;
+  height: 5px;
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+}
