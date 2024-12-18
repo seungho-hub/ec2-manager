@@ -78,7 +78,7 @@
 		})
 			.then((res) => res.json())
 			.then((data) => {
-				instances[i].terminalOutput = [instances[i].terminalOutput, data];
+				instances[i].terminalOutput.push(data)
 				instances[i].terminalInput = ''
 			});
 	}
@@ -205,7 +205,9 @@
 								on:submit={() => {
 									exec(i, instance.PublicIpAddress as string, instance.KeyName as string);
 								}}
-							>
+							>	<span>
+								>
+							</span>
 								<input type="text" bind:value={instance.terminalInput} />
 							</form>
 						</div>
@@ -320,6 +322,10 @@
 				gap: 20px;
 				.input {
 					form {
+						background-color: black;
+						padding : 5px 10px;
+						display: flex;
+						flex-direction: row;
 						input {
 							width: 100%;
 							border-radius: 0;
