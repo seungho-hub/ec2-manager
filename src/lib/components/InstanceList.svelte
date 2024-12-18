@@ -79,7 +79,7 @@
 			.then((res) => res.json())
 			.then((data) => {
 				instances[i].terminalOutput = [instances[i].terminalOutput, data];
-				console.log(instances[i]);
+				instances[i].terminalInput = ''
 			});
 	}
 </script>
